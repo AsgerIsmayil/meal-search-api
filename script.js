@@ -3,33 +3,55 @@ const mealList = document.getElementById('meal');
 const mealDetailsContent = document.querySelector('.meal-details-content');
 const mealDetails = document.querySelector(".meal-details");
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
-const searchControl = document.querySelector(".search-control")
+const searchControl = document.querySelector(".search-control");
 
 // event listeners
 searchBtn.addEventListener('click', getMealList);
-searchControl.addEventListener('keypress' , getMealListEnter)
+searchControl.addEventListener('keypress', getMealListEnter);
 mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
+
 });
-document.onkeydown = function(evt) {
-    evt = evt || window.event;
-    if (evt.keyCode == 27) {
+
+function detailsClose() {
+    document.addEventListener('contextmenu', (evt) => {
+        evt.preventDefault();
         mealDetailsContent.parentElement.classList.remove('showRecipe');
-    }
-};
+    });
+}
+
+function pageUp() {
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 13) {
+            window.scrollTo(0, 0);
+        }
+    };
+}
+
+function stopPageUp() {
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 13) {
+            evt.preventDefault();
+        }
+    };
+}
 
 
 // get meal list that matches with the ingredients
-function getMealList(){
+function getMealList() {
+
     let searchInputTxt = document.getElementById('search-input').value.trim();
-    fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
-    .then(response => response.json())
-    .then(data => {
-        let html = "";
-        if(data.meals){
-            data.meals.forEach(meal => {
-                html += `
+    if (searchControl.value != "") {
+        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${searchInputTxt}`)
+            .then(response => response.json())
+            .then(data => {
+                let html = "";
+                if (data.meals) {
+                    data.meals.forEach(meal => {
+                        html += `
                     <div class = "meal-item" data-id = "${meal.idMeal}">
                         <div class = "meal-img">
                             <img src = "${meal.strMealThumb}" alt = "food">
@@ -40,39 +62,44 @@ function getMealList(){
                         </div>
                     </div>
                 `;
-            });
-            mealList.classList.remove('notFound');
-        } else{
-            html = "Sorry, we didn't find any meal!";
-            mealList.classList.add('notFound');
-        }
+                    });
+                    mealList.classList.remove('notFound');
+                } else {
+                    html = "Sorry, we didn't find any meal!";
+                    mealList.classList.add('notFound');
+                }
 
-        mealList.innerHTML = html;
-    });
+                mealList.innerHTML = html;
+
+                pageUp();
+
+            });
+    }
 }
 
-function getMealListEnter(e){
+function getMealListEnter(e) {
     if (e.key === 'Enter') {
         getMealList()
-      }
+    }
 }
 
 // get recipe of the meal
-function getMealRecipe(e){
+function getMealRecipe(e) {
     e.preventDefault();
-    if(e.target.classList.contains('recipe-btn')){
+    if (e.target.classList.contains('recipe-btn')) {
         let mealItem = e.target.parentElement.parentElement;
         fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItem.dataset.id}`)
-        .then(response => response.json())
-        .then(data => mealRecipeModal(data.meals));
+            .then(response => response.json())
+            .then(data => mealRecipeModal(data.meals));
     }
 }
 
 // create a modal
-function mealRecipeModal(meal){
+function mealRecipeModal(meal) {
     console.log(meal);
     meal = meal[0];
     let html = `
+        <div class="right-click">right click to exit</div>
         <h2 class = "recipe-title">${meal.strMeal}</h2>
         <p class = "recipe-category">${meal.strCategory}</p>
         <div class = "recipe-instruct">
@@ -84,10 +111,14 @@ function mealRecipeModal(meal){
         </div>
         <div class = "recipe-link">
             <a href = "${meal.strYoutube}" target = "_blank">Watch Video</a>
+            
         </div>
     `;
     mealDetailsContent.innerHTML = html;
     mealDetailsContent.parentElement.classList.add('showRecipe');
+    
+    detailsClose();
+    stopPageUp();
+
 
 }
-
