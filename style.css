@@ -6,6 +6,7 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
+    scroll-behavior: smooth;
 }
 
 :root {
@@ -466,6 +467,7 @@ ul li a:hover {
         display: flex;
         justify-content: space-around;
     }
+
     .search-control {
         background-image: linear-gradient(270deg, #e2e2e2, #fff);
     }
@@ -511,6 +513,7 @@ ul li a:hover {
     .footer__container {
         padding: 2rem;
     }
+
     .search-control {
         background-image: linear-gradient(270deg, #e1e1e1, #fff);
     }
@@ -518,16 +521,18 @@ ul li a:hover {
 
 @media screen and (min-width: 992px) {
     #meal {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .footer__content {
         display: flex;
         justify-content: space-around;
     }
-    .footer__content div{
+
+    .footer__content div {
         margin: 0 30px;
     }
+
     .search-control {
         background-image: linear-gradient(270deg, #eee, #f9f9f9);
     }
@@ -549,6 +554,7 @@ ul li a:hover {
     justify-content: center;
     box-shadow: 0 2px 4px -2px rgb(9, 9, 9);
     transition: bottom .4s;
+    scroll-behavior: smooth;
 }
 
 .scrollup:hover {
