@@ -4,6 +4,10 @@ const mealDetailsContent = document.querySelector('.meal-details-content');
 const mealDetails = document.querySelector(".meal-details");
 const recipeCloseBtn = document.getElementById('recipe-close-btn');
 const searchControl = document.querySelector(".search-control");
+const mealSearch = document.querySelector('.meal-search');
+const mealResult = document.querySelector('.meal-result');
+const mealItem = document.querySelector('.meal-item')
+const body = document.querySelector('body')
 
 // event listeners
 searchBtn.addEventListener('click', getMealList);
@@ -11,13 +15,14 @@ searchControl.addEventListener('keypress', getMealListEnter);
 mealList.addEventListener('click', getMealRecipe);
 recipeCloseBtn.addEventListener('click', () => {
     mealDetailsContent.parentElement.classList.remove('showRecipe');
-
+    body.style.overflowY = "scroll"
 });
 
 function detailsClose() {
     document.addEventListener('contextmenu', (evt) => {
         evt.preventDefault();
         mealDetailsContent.parentElement.classList.remove('showRecipe');
+        body.style.overflowY = "scroll"
     });
 }
 
@@ -71,8 +76,6 @@ function getMealList() {
 
                 mealList.innerHTML = html;
 
-                pageUp();
-
             });
     }
 }
@@ -92,7 +95,9 @@ function getMealRecipe(e) {
             .then(response => response.json())
             .then(data => mealRecipeModal(data.meals));
     }
+    
 }
+
 
 // create a modal
 function mealRecipeModal(meal) {
@@ -116,9 +121,8 @@ function mealRecipeModal(meal) {
     `;
     mealDetailsContent.innerHTML = html;
     mealDetailsContent.parentElement.classList.add('showRecipe');
-    
+    body.style.overflowY = "hidden";
     detailsClose();
-    stopPageUp();
-
-
 }
+
+pageUp()
