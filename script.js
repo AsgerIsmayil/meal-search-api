@@ -95,7 +95,7 @@ function getMealRecipe(e) {
             .then(response => response.json())
             .then(data => mealRecipeModal(data.meals));
     }
-    
+
 }
 
 
@@ -122,20 +122,21 @@ function mealRecipeModal(meal) {
     mealDetailsContent.innerHTML = html;
     mealDetailsContent.parentElement.classList.add('showRecipe');
     body.style.overflowY = "hidden";
+    document.getElementById('scroll-up').style.display = 'none'
     detailsClose();
 }
 
 pageUp()
 
-function scrollUp(){
+function scrollUp() {
     const scrollUp = document.getElementById('scroll-up');
     // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scroll-top class
-    if(this.scrollY >= 350) {
+    if (this.scrollY >= 350) {
         scrollUp.classList.add('show-scroll');
         scrollUp.style.display = "flex"
     } else {
         scrollUp.classList.remove('show-scroll');
         scrollUp.style.display = 'none'
+    }
 }
-  }
-  window.addEventListener('scroll', scrollUp)
+window.addEventListener('scroll', scrollUp)
