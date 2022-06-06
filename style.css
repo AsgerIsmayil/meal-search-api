@@ -18,6 +18,7 @@ body {
     font-size: 1.05rem;
     line-height: 1.6;
     font-family: 'Poppins', sans-serif;
+    background-image: linear-gradient(270deg, #ddd, #fff);
 }
 
 /*  */
@@ -27,12 +28,15 @@ body {
     outline: 0;
     font-size: 1.05rem;
 }
-.author{
+
+.author {
     color: #222;
 }
-.base{
+
+.base {
     color: #f0f0f0;
 }
+
 .text {
     opacity: 0.8;
 }
@@ -46,10 +50,9 @@ body {
 
 
 .meal-wrapper {
-    max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
     padding: 2rem;
-    background: #fff;
     text-align: center;
 }
 
@@ -65,6 +68,7 @@ body {
     margin: 1.2rem 0;
     display: flex;
     align-items: stretch;
+
 }
 
 .search-control,
@@ -376,9 +380,11 @@ body {
     display: flex;
     column-gap: 1rem;
 }
-ul li a:hover{
+
+ul li a:hover {
     color: #f0f0f0;
 }
+
 .footer__social-link {
     font-size: 1.25rem;
     color: var(--text-color);
@@ -405,9 +411,11 @@ ul li a:hover{
     column-gap: 1.25rem;
     color: #d65108;
 }
-.footer__privacy  a:hover{
+
+.footer__privacy a:hover {
     color: #b54507;
 }
+
 .footer__privacy {
     margin-top: 2rem;
 }
@@ -447,12 +455,24 @@ ul li a:hover{
         display: flex;
         flex-direction: column;
     }
+
+    .scrollup {
+        width: 70px;
+        height: 70px;
+    }
+
+    .search-control {
+        background-image: linear-gradient(270deg, #e2e2e2, #fff);
+    }
 }
 
 @media screen and (min-width:440.1px) {
-    .footer__privacy{
+    .footer__privacy {
         display: flex;
         justify-content: space-around;
+    }
+    .search-control {
+        background-image: linear-gradient(270deg, #e2e2e2, #fff);
     }
 }
 
@@ -496,6 +516,9 @@ ul li a:hover{
     .footer__container {
         padding: 2rem;
     }
+    .search-control {
+        background-image: linear-gradient(270deg, #e1e1e1, #fff);
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -505,12 +528,18 @@ ul li a:hover{
 
     .footer__content {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-around;
+    }
+    .footer__content div{
+        margin: 0 30px;
+    }
+    .search-control {
+        background-image: linear-gradient(270deg, #eee, #f9f9f9);
     }
 }
 
 
-.scrollup{
+.scrollup {
     display: flex;
     width: 30px;
     height: 30px;
@@ -525,16 +554,18 @@ ul li a:hover{
     box-shadow: 0 2px 4px -2px rgb(9, 9, 9);
     transition: bottom .4s;
 }
-.scrollup:hover{
+
+.scrollup:hover {
     bottom: 64px;
 }
 
 
-#theme-button{
+#theme-button {
     position: absolute;
     right: 40px;
     top: 20px;
 }
-.footer__title{
+
+.footer__title {
     color: #ddd;
 }
