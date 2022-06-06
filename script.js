@@ -7,7 +7,7 @@ const searchControl = document.querySelector(".search-control");
 const mealSearch = document.querySelector('.meal-search');
 const mealResult = document.querySelector('.meal-result');
 const mealItem = document.querySelector('.meal-item')
-const body = document.querySelector('body')
+const body = document.querySelector('body');
 
 // event listeners
 searchBtn.addEventListener('click', getMealList);
@@ -79,7 +79,7 @@ function getMealList() {
             });
     }
 }
-
+document.getElementById('scroll-up').style.display = 'none'
 function getMealListEnter(e) {
     if (e.key === 'Enter') {
         getMealList()
@@ -140,3 +140,4 @@ function scrollUp() {
     }
 }
 window.addEventListener('scroll', scrollUp)
+

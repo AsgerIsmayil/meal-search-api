@@ -523,5 +523,15 @@ ul li a:hover{
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 4px -2px rgb(9, 9, 9);
+    transition: bottom .4s;
+}
+.scrollup:hover{
+    bottom: 64px;
 }
 
+
+#theme-button{
+    position: absolute;
+    right: 40px;
+    top: 20px;
+}
