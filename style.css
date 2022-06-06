@@ -510,3 +510,17 @@ ul li a:hover{
 }
 
 
+.scrollup{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    bottom: 60px;
+    right: 40px;
+    background-color: #f0f0f0;
+    color: #222;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: center;
+}
+
